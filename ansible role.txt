@@ -1,0 +1,15 @@
+Mkdir -p roles/common/tasks/main.yml
+---
+- name: install
+package:
+name: {{ item }}
+state: present
+Loop:
+- zip
+- vim
+- net-tools
+- name: check if centos
+File:
+Path: /tmp/this_is_centos
+State: present
+when: ansible_distribution == 'CentOS'
